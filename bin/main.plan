@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<purity-config version="15.0.0.231026-6362-97eca32c">
+<purity-config version="15.2.0.240425-7925-ed10bffb">
 	<references/>
 	<component-mappings>
 		<propertyMappings/>
@@ -7,7 +7,7 @@
 
 <!-- (Filter) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.conditions.Filter" disabled="false" id="Filter">
 		<properties condition="city = &quot;Miami&quot;"/>
-		<visual-constraints layout="vertical" bounds="312,216,48,48"/>
+		<visual-constraints layout="vertical" bounds="264,216,-1,-1"/>
 	</step>
 	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
 		<source endpoint="out" step="Filter"/>
@@ -19,12 +19,57 @@
 
 
 
+<!-- (Filter 2) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.conditions.Filter" disabled="false" id="Filter 2">
+		<properties condition="city = &quot;New York&quot;"/>
+		<visual-constraints layout="vertical" bounds="480,216,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="Filter 2"/>
+		<target endpoint="in" step="out 2"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+
+
+
+<!-- (Multiplicator) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.flow.Multiplicator" disabled="false" id="Multiplicator">
+		<properties/>
+		<visual-constraints layout="vertical" bounds="360,168,48,48"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="Multiplicator"/>
+		<target endpoint="in" step="Filter"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="Multiplicator"/>
+		<target endpoint="in" step="Filter 2"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+
+
+
 <!-- (out) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="out">
-		<properties writeHeader="true" fileName="../data/out/res.txt" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+		<properties writeHeader="true" fileName="../data/in/result.txt" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
 			<columns/>
 			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
 		</properties>
-		<visual-constraints layout="vertical" bounds="312,360,48,48"/>
+		<visual-constraints layout="vertical" bounds="264,336,-1,-1"/>
+	</step>
+
+
+
+<!-- (out 2) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="out 2">
+		<properties writeHeader="true" fileName="../data/in/res2.txt" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="480,336,48,48"/>
 	</step>
 
 
@@ -51,7 +96,7 @@
 	</step>
 	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
 		<source endpoint="out" step="us cities"/>
-		<target endpoint="in" step="Filter"/>
+		<target endpoint="in" step="Multiplicator"/>
 		<visual-constraints>
 			<bendpoints/>
 		</visual-constraints>
