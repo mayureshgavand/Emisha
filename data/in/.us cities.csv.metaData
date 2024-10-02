@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<settings>
+  <connector>
+    <saved-state fixedSizes="false" escapeSequence="" fieldSeparator=";" stringQualifierEscapeSequence="" recordLength="-1" numberOfLinesInFooter="0" encoding="ISO-8859-2" lineWithColumnNames="1" ignoredRowRegEx="" recordSeparator="\r\n" stringQualifier="" numberOfLinesInHeader="1">
+      <columns>
+        <textColumnMetaData useInReaderOut="true" decimalSeparator="." booleanTrueValue="1" booleanFalseValue="0" dataType="STRING" name="city" columnWidth="0" maxDecimalPlaces="0" dateFormatLocale="en_IN" numberGroupSeparator="" maxWidth="-1"/>
+      </columns>
+    </saved-state>
+  </connector>
+</settings>
